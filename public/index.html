@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Salary Management System</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Custom Dark Theme CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><strong>ESMS</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="text-center mb-4 fade-in">Employee Salary Management System</h1>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mb-4" id="managementTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="employee-tab" data-bs-toggle="tab" href="#employee" role="tab">Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="salary-tab" data-bs-toggle="tab" href="#salary" role="tab">Salary Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="payroll-tab" data-bs-toggle="tab" href="#payroll" role="tab">Payroll</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="leave-tab" data-bs-toggle="tab" href="#leave" role="tab">Leave Requests</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="managementTabContent">
+      <!-- Employee Tab -->
+      <div class="tab-pane fade show active" id="employee" role="tabpanel">
+        <div class="card p-3 mb-4 fade-in">
+          <h3>Manage Employees</h3>
+          <form id="employeeForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" id="gender" name="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="hire_date" class="form-label">Hire Date</label>
+                <input type="date" class="form-control" id="hire_date" name="hire_date">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="tax_id" class="form-label">Tax ID</label>
+                <input type="text" class="form-control" id="tax_id" name="tax_id">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="job_title" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="job_title" name="job_title">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="department" class="form-label">Department</label>
+                <input type="text" class="form-control" id="department" name="department">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Employee</button>
+          </form>
+        </div>
+        <div class="card p-3 fade-in">
+          <h4>Employee List</h4>
+          <div id="employeeList"></div>
+        </div>
+      </div>
+
+      <!-- Salary Details Tab -->
+      <div class="tab-pane fade" id="salary" role="tabpanel">
+        <div class="card p-3 mb-4 fade-in">
+          <h3>Manage Salary Details</h3>
+          <form id="salaryForm">
+            <div class="mb-3">
+              <label for="salary_employee_id" class="form-label">Employee ID</label>
+              <input type="number" class="form-control" id="salary_employee_id" name="employee_id" required>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="basic_salary" class="form-label">Basic Salary</label>
+                <input type="number" step="0.01" class="form-control" id="basic_salary" name="basic_salary" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="allowances" class="form-label">Allowances</label>
+                <input type="number" step="0.01" class="form-control" id="allowances" name="allowances">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="deductions" class="form-label">Deductions</label>
+                <input type="number" step="0.01" class="form-control" id="deductions" name="deductions">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="bonus" class="form-label">Bonus</label>
+                <input type="number" step="0.01" class="form-control" id="bonus" name="bonus">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="effective_date" class="form-label">Effective Date</label>
+              <input type="date" class="form-control" id="effective_date" name="effective_date">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Salary Details</button>
+          </form>
+        </div>
+        <div class="card p-3 fade-in">
+          <h4>Salary Details List</h4>
+          <div id="salaryList"></div>
+        </div>
+      </div>
+
+      <!-- Payroll Tab -->
+      <div class="tab-pane fade" id="payroll" role="tabpanel">
+        <div class="card p-3 mb-4 fade-in">
+          <h3>Manage Payroll</h3>
+          <form id="payrollForm">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="payroll_employee_id" class="form-label">Employee ID</label>
+                <input type="number" class="form-control" id="payroll_employee_id" name="employee_id" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="pay_date" class="form-label">Pay Date</label>
+                <input type="date" class="form-control" id="pay_date" name="pay_date" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="hours_worked" class="form-label">Hours Worked</label>
+                <input type="number" step="0.01" class="form-control" id="hours_worked" name="hours_worked" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="calculated_salary" class="form-label">Calculated Salary</label>
+                <input type="number" step="0.01" class="form-control" id="calculated_salary" name="calculated_salary"
+                  required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="tax" class="form-label">Tax</label>
+                <input type="number" step="0.01" class="form-control" id="tax" name="tax">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="insurance" class="form-label">Insurance</label>
+                <input type="number" step="0.01" class="form-control" id="insurance" name="insurance">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="other_deductions" class="form-label">Other Deductions</label>
+                <input type="number" step="0.01" class="form-control" id="other_deductions" name="other_deductions">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="net_salary" class="form-label">Net Salary</label>
+              <input type="number" step="0.01" class="form-control" id="net_salary" name="net_salary" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Payroll Entry</button>
+          </form>
+        </div>
+        <div class="card p-3 fade-in">
+          <h4>Payroll List</h4>
+          <div id="payrollList"></div>
+        </div>
+      </div>
+
+      <!-- Leave Requests Tab -->
+      <div class="tab-pane fade" id="leave" role="tabpanel">
+        <div class="card p-3 mb-4 fade-in">
+          <h3>Manage Leave Requests</h3>
+          <form id="leaveForm">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="leave_employee_id" class="form-label">Employee ID</label>
+                <input type="number" class="form-control" id="leave_employee_id" name="employee_id" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="leave_type" class="form-label">Leave Type</label>
+                <select class="form-select" id="leave_type" name="leave_type">
+                  <option value="Sick">Sick</option>
+                  <option value="Casual">Casual</option>
+                  <option value="Annual">Annual</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="start_date" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="end_date" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="reason" class="form-label">Reason</label>
+              <textarea class="form-control" id="reason" name="reason"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Leave Request</button>
+          </form>
+        </div>
+        <div class="card p-3 fade-in">
+          <h4>Leave Requests List</h4>
+          <div id="leaveList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+/* Define CSS Variables for the light theme */
+:root {
+    --bg-color: #f8f9fa;         /* Light gray background */
+    --primary-color: #007bff;    /* Blue for primary actions */
+    --secondary-color: #6c757d;  /* Muted gray for secondary texts */
+    --text-color: #212529;       /* Almost black text for readability */
+    --nav-bg: #ffffff;           /* White navbar background */
+    --card-bg: #ffffff;          /* White cards for content */
+    --border-color: #dee2e6;     /* Light border color */
+  }
+  
+  /* Global Styles */
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+  }
+  .navbar .navbar-brand {
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .navbar-nav .nav-link {
+    color: var(--text-color) !important;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+  }
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+  }
+  
+  /* Tab Styling */
+  .nav-tabs {
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1rem;
+  }
+  .nav-tabs .nav-link {
+    color: var(--text-color) !important;
+    background-color: var(--card-bg);
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease, color 0.3s ease;
+  }
+  .nav-tabs .nav-link:hover {
+    border-bottom: 2px solid var(--primary-color);
+  }
+  .nav-tabs .nav-link.active {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color) !important;
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Form Controls */
+  .form-control,
+  .form-select,
+  input,
+  textarea,
+  select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
+  }
+  .form-control:focus,
+  .form-select:focus {
+    border: 1px solid var(--primary-color);
+    box-shadow: none;
+  }
+  
+  /* Placeholder Text */
+  ::placeholder {
+    color: var(--secondary-color);
+  }
+  
+  /* Button Styling */
+  .btn-primary {
+    background: var(--primary-color);
+    border: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: #0069d9;  /* Slightly darker blue */
+    transform: scale(1.02);
+  }
+  
+  /* Table Styling */
+  .table {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .table th,
+  .table td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+  }
+  .table th {
+    background-color: #e9ecef;
+    font-weight: bold;
+  }
+  
+  /* Headings Styling */
+  h1, h2, h3, h4 {
+    color: var(--text-color);
+  }
+  
+  /* Link Styling */
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: darken(var(--primary-color), 10%);
+  }
+  
+  /* Smooth Transition for All Elements */
+  * {
+    transition: all 0.3s ease;
+  }
+  
+  /* Fade In Animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  

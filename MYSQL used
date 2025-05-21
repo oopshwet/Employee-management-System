@@ -1,0 +1,111 @@
+USE EmployeeManagement;  -- Make sure you're using the correct database
+SHOW TABLES;
+
+DESCRIBE employees;
+DESCRIBE salary_details;
+DESCRIBE payroll;
+DESCRIBE leave_requests;
+DESCRIBE roles;
+DESCRIBE users;
+
+Employees Table (Manage Employees)
+-- Create Table
+CREATE TABLE employees (
+  employee_id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  job_title VARCHAR(100),
+  department VARCHAR(100),
+  email VARCHAR(100) UNIQUE NOT NULL,
+  hire_date DATE NOT NULL,
+  status ENUM('Active', 'Inactive') DEFAULT 'Active'
+);
+
+-- Insert Employee
+INSERT INTO employees (first_name, last_name, job_title, department, email, hire_date, status)
+VALUES ('John', 'Doe', 'Software Engineer', 'IT', 'john.doe@example.com', '2025-04-28', 'Active');
+
+-- Update Employee
+UPDATE employees SET job_title = 'Senior Engineer', department = 'Tech' WHERE employee_id = 1;
+
+-- Delete Employee
+DELETE FROM employees WHERE employee_id = 1;
+
+-- Get All Employees
+SELECT * FROM employees;
+
+
+Salary Details (Track Employee Salaries)
+-- Create Table
+CREATE TABLE salary_details (
+  salary_id INT AUTO_INCREMENT PRIMARY KEY,
+  employee_id INT NOT NULL,
+  basic_salary DECIMAL(10,2) NOT NULL,
+  allowances DECIMAL(10,2) DEFAULT 0,
+  deductions DECIMAL(10,2) DEFAULT 0,
+  bonus DECIMAL(10,2) DEFAULT 0,
+  effective_date DATE NOT NULL,
+  FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+
+-- Insert Salary Details
+INSERT INTO salary_details (employee_id, basic_salary, allowances, deductions, bonus, effective_date)
+VALUES (1, 50000, 5000, 2000, 1000, '2025-04-30');
+
+-- Update Salary
+UPDATE salary_details SET basic_salary = 52000 WHERE salary_id = 1;
+
+-- Delete Salary Record
+DELETE FROM salary_details WHERE salary_id = 1;
+
+-- Get Salary Records for an Employee
+SELECT * FROM salary_details WHERE employee_id = 1;
+
+Payroll Processing
+
+-- Create Table
+CREATE TABLE payroll (
+  payroll_id INT AUTO_INCREMENT PRIMARY KEY,
+  employee_id INT NOT NULL,
+  salary_id INT NOT NULL,
+  payment_date DATE NOT NULL,
+  payment_status ENUM('Pending', 'Paid') DEFAULT 'Pending',
+  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+  FOREIGN KEY (salary_id) REFERENCES salary_details(salary_id)
+);
+
+-- Insert Payroll Record
+INSERT INTO payroll (employee_id, salary_id, payment_date, payment_status)
+VALUES (1, 1, '2025-05-01', 'Paid');
+
+-- Update Payroll Status
+UPDATE payroll SET payment_status = 'Paid' WHERE payroll_id = 1;
+
+-- Get Payroll for an Employee
+SELECT * FROM payroll WHERE employee_id = 1;
+
+Leave Requests
+-- Create Table
+CREATE TABLE leave_requests (
+  leave_id INT AUTO_INCREMENT PRIMARY KEY,
+  employee_id INT NOT NULL,
+  leave_type ENUM('Sick', 'Casual', 'Annual', 'Other') NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+  reason VARCHAR(255) NOT NULL,
+  FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+
+-- Insert Leave Request
+INSERT INTO leave_requests (employee_id, leave_type, start_date, end_date, status, reason)
+VALUES (1, 'Sick', '2025-05-10', '2025-05-12', 'Pending', 'Fever');
+
+-- Approve Leave
+UPDATE leave_requests SET status = 'Approved' WHERE leave_id = 1;
+
+-- Delete Leave Request
+DELETE FROM leave_requests WHERE leave_id = 1;
+
+-- Get All Leave Requests
+SELECT * FROM leave_requests WHERE employee_id = 1;
