@@ -1,5 +1,5 @@
 # Employee-management-System
-[17/04/25, 3:12:37 PM] _shwettt: Employee Salary Management.
+Employee Salary Management.
 Abstract of the Project:
 The Employee Salary Management System project is designed to automate the process of
 managing employee salaries and related tasks for an organization. The system is designed to
@@ -32,7 +32,7 @@ as employee-wise payroll summary, tax report, and deduction report. The system s
 also allow authorized personnel to generate custom reports as per their requirements.
 5.⁠ ⁠Leave Management: The system may include a leave management module that enables
 employees to apply for leaves and managers to approve or reject those leave requests.
-[17/04/25, 3:34:26 PM] _shwettt: 6.⁠ ⁠Integration with Other Systems: The system should integrate with other systems, such as
+6.⁠ ⁠Integration with Other Systems: The system should integrate with other systems, such as
 accounting software, HR management systems, and attendance management systems, to
 ensure seamless data exchange between systems.
 7.⁠ ⁠User Roles and Permissions: The system should have different user roles and permissions
